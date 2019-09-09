@@ -3,6 +3,8 @@ package com.example.ngl_cau1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +15,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
      CheckBox checkBox;
-     Button btn;
+    Button btnDangNhap;
+    Button btnThoat;
      EditText taikhoan;
      EditText matkhau;
      TextView loi;
@@ -22,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         checkBox = findViewById(R.id.checkBoxLuuThongTin);
-         btn = findViewById(R.id.buttonDangNhap);
-         taikhoan = findViewById(R.id.editTextTaiKhoan);
-         matkhau = findViewById(R.id.editTextMatKhau);
-         loi = findViewById(R.id.textViewLoi);
-        btn.setOnClickListener(new View.OnClickListener() {
+        checkBox = findViewById(R.id.checkBoxLuuThongTin);
+        btnDangNhap = findViewById(R.id.buttonDangNhap);
+        btnThoat = findViewById(R.id.buttonThoat);
+        taikhoan = findViewById(R.id.editTextTaiKhoan);
+        matkhau = findViewById(R.id.editTextMatKhau);
+        loi = findViewById(R.id.textViewLoi);
+        btnDangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String taikhoanString = taikhoan.getText().toString();
@@ -47,6 +51,33 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+        btnThoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder b=new AlertDialog.Builder(MainActivity.this);
+                b.setTitle("Thông báo");
+                b.setMessage("Bạn có muốn thoát");
+                b.setPositiveButton("Có", new DialogInterface. OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        finish();
+                    }});b.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+
+                    public void onClick(DialogInterface dialog, int which)
+
+                    {
+
+                        dialog.cancel();
+
+                    }
+
+                });
+
+                b.create().show();
             }
         });
     }
